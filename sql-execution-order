@@ -1,0 +1,27 @@
+select * from youtube;
+
+
+-- Q1 
+select sum(revenuelastmonth) from youtube; 
+-- Q2 
+select country, sum(revenuelastmonth) from youtube group by country; 
+-- Q3
+select country,sum(revenuelastmonth) from youtube where channeltype='Gaming' group by country;
+-- Q4
+select country, revenuelastmonth from youtube where revenuelastmonth > 20000; 
+-- Q5 
+select country, revenuelastmonth, channeltype from youtube where revenuelastmonth > 3000 and channeltype='Gaming';
+-- Q6 
+select country, count(influencername), sum(revenuelastmonth), avg(revenuelastmonth) from youtube group by country; 
+-- Q7 
+select country, revenuelastmonth, sum(revenuelastmonth) as total_revenue, avg(revenuelastmonth) as average_revenue from youtube group by country; --  where sum(revenuelastmonth) > 150000 and avg(revenuelastmonth) > 2000 group by country;  
+-- Q8 
+select channeltype  from youtube group by channeltype order by sum(revenuelastmonth) desc limit 1;
+-- Q9 
+SELECT channeltype, AVG(revenuelastmonth) AS average_revenue
+FROM youtube
+GROUP BY channeltype
+HAVING AVG(revenuelastmonth) > (0.5 * MAX(revenuelastmonth));
+-- Q10 
+select channeltype, sum(avgviewspervideo) as average_views from youtube group by channeltype having sum(avgviewspervideo) > 0.10 * sum(avgviewspervideo); 
+
